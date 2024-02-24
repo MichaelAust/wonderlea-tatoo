@@ -953,7 +953,7 @@ html.open-navi .page-wrap {
     background-color: #434343;
     z-index: 1000;
     transform: translateX(100%);
-    background-image: url(../images/layout/nav-bg.png);
+    background-image: url(/images/layout/nav-bg.png);
     background-size: cover;
     transition: 0.8s cubic-bezier(0.8, 0.2, 0.2, 0.8);
   }
@@ -1433,18 +1433,18 @@ header:not(.sub-page-header) .ueber-bg {
   width: 100%;
   height: 100%;
   z-index: -2;
-  background-image: url(../images/ueber-mich/ueber-header-mob.jpg);
+  background-image: url(/images/ueber-mich/ueber-header-mob.jpg);
   background-size: cover;
   background-position: top;
 }
 @media (min-width: 639px) {
   header:not(.sub-page-header) .ueber-bg {
-    background-image: url(../images/ueber-mich/ueber-header-tab.jpg);
+    background-image: url(/images/ueber-mich/ueber-header-tab.jpg);
   }
 }
 @media (min-width: 1199px) {
   header:not(.sub-page-header) .ueber-bg {
-    background-image: url(../images/ueber-mich/ueber-header.jpg);
+    background-image: url(/images/ueber-mich/ueber-header.jpg);
     background-position: center;
   }
 }
@@ -1718,7 +1718,7 @@ header:not(.sub-page-header) .arrow-ct .line {
     width: 100%;
     height: 100%;
     z-index: -2;
-    background-image: url(../images/layout/texture-bg.jpg);
+    background-image: url(/images/layout/texture-bg.jpg);
     background-size: cover;
     background-position: top;
   }
@@ -2501,16 +2501,16 @@ main .ueber-sec-3 .bg {
   background-position: center;
 }
 main .ueber-sec-3 .bg.on-screen {
-  background-image: url(../images/ueber-mich/ueber-mich-3.jpg);
+  background-image: url(/images/ueber-mich/ueber-mich-3.jpg);
 }
 @media (min-width: 639px) {
   main .ueber-sec-3 .bg.on-screen {
-    background-image: url(../images/ueber-mich/ueber-mich-3-tablet.jpg);
+    background-image: url(/images/ueber-mich/ueber-mich-3-tablet.jpg);
   }
 }
 @media (min-width: 1199px) {
   main .ueber-sec-3 .bg.on-screen {
-    background-image: url(../images/ueber-mich/ueber-mich-3-desktop.jpg);
+    background-image: url(/images/ueber-mich/ueber-mich-3-desktop.jpg);
   }
 }
 main .ueber-sec-4 {
@@ -2593,16 +2593,16 @@ footer .footer-scroll-wrapper .footer-scroll-ct .bg-ct .bg {
   background-position: center;
 }
 footer .footer-scroll-wrapper .footer-scroll-ct .bg-ct .bg.entered {
-  background-image: url(../images/footer/footer-bg-mobile.jpg);
+  background-image: url(/images/footer/footer-bg-mobile.jpg);
 }
 @media (min-width: 639px) {
   footer .footer-scroll-wrapper .footer-scroll-ct .bg-ct .bg.entered {
-    background-image: url(../images/footer/footer-bg-medium.jpg);
+    background-image: url(/images/footer/footer-bg-medium.jpg);
   }
 }
 @media (min-width: 1199px) {
   footer .footer-scroll-wrapper .footer-scroll-ct .bg-ct .bg.entered {
-    background-image: url(../images/footer/footer-bg.jpg);
+    background-image: url(/images/footer/footer-bg.jpg);
   }
 }
 footer .footer-scroll-wrapper .footer-scroll-ct .svgs-ct {
@@ -2926,7 +2926,7 @@ body:not(.start):not(.ueber) main {
     width: 100vw;
     height: 100vh;
     z-index: 1002;
-    background-image: url(../images/layout/nav-bg.png);
+    background-image: url(/images/layout/nav-bg.png);
     background-size: cover;
     transition: 0.4s ease;
     opacity: 0;
@@ -3136,7 +3136,7 @@ html.open-filter .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner
   }
 }
 .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.fineline span .inner:before {
-  background-image: url(../images/layout/fineline-icon.svg);
+  background-image: url(/images/layout/fineline-icon.svg);
 }
 @media (min-width: 1199px) {
   .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.fineline .line {
@@ -3148,7 +3148,7 @@ html.open-filter .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner
   }
 }
 .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.mandala span .inner:before {
-  background-image: url(../images/layout/mandala-icon.svg);
+  background-image: url(/images/layout/mandala-icon.svg);
 }
 @media (min-width: 1199px) {
   .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.mandala .line {
@@ -3160,7 +3160,7 @@ html.open-filter .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner
   }
 }
 .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.dotwork span .inner:before {
-  background-image: url(../images/layout/dotwork-icon.svg);
+  background-image: url(/images/layout/dotwork-icon.svg);
 }
 @media (min-width: 1199px) {
   .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.dotwork .line {
@@ -3172,7 +3172,7 @@ html.open-filter .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner
   }
 }
 .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.lettering span .inner:before {
-  background-image: url(../images/layout/lettering-icon.svg);
+  background-image: url(/images/layout/lettering-icon.svg);
 }
 @media (min-width: 1199px) {
   .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.lettering .line {
@@ -3184,7 +3184,7 @@ html.open-filter .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner
   }
 }
 .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.floral span .inner:before {
-  background-image: url(../images/layout/floral-icon.svg);
+  background-image: url(/images/layout/floral-icon.svg);
 }
 @media (min-width: 1199px) {
   .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.floral .line {
@@ -3196,7 +3196,7 @@ html.open-filter .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner
   }
 }
 .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.personalisiert span .inner:before {
-  background-image: url(../images/layout/personalisiert-icon.svg);
+  background-image: url(/images/layout/personalisiert-icon.svg);
 }
 @media (min-width: 1199px) {
   .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.personalisiert .line {
@@ -3333,7 +3333,7 @@ html.open-filter .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner
   right: 0;
   width: 4.72rem;
   height: 3.61rem;
-  background-image: url(../images/layout/check.svg);
+  background-image: url(/images/layout/check.svg);
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
