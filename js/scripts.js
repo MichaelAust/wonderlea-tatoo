@@ -629,19 +629,19 @@ if (document.body.classList.contains('ueber')) {
 var footerTl = gsap.timeline({
   scrollTrigger: {
     trigger: ".footer-scroll-wrapper",
-    start: "top top",
+    start: "5% bottom",
     end: "bottom bottom",
     scrub: true,
   }
 });
-footerTl.to(".keep-scrolling", {
-    opacity: 0,
-    letterSpacing: "1em",
-  })
-  .from(".next-page-name", {
-    letterSpacing: "0.025em",
-  }, 0)
-  .from(".svgs-ct .lines-top", {
+// footerTl.to(".keep-scrolling", {
+//     opacity: 0,
+//     letterSpacing: "1em",
+//   })
+//   .from(".next-page-name", {
+//     letterSpacing: "0.025em",
+//   }, 0)
+  footerTl.from(".svgs-ct .lines-top", {
     scaleY: 0,
   }, 0)
   .from(".svgs-ct .lines-bottom", {
@@ -681,51 +681,6 @@ if (document.body.classList.contains('faq')) {
     duration: 800,
   });
 };
-
-
-// Get the element with class "footer-scroll-wrapper"
-const footerScrollWrapper = document.querySelector('.footer-scroll-wrapper');
-
-// Function to check if the user has scrolled to the bottom
-function isAtBottom() {
-  const windowHeight = window.innerHeight;
-  const scrollY = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
-  const documentHeight = Math.max(
-    document.body.scrollHeight,
-    document.documentElement.scrollHeight,
-    document.body.offsetHeight,
-    document.documentElement.offsetHeight,
-    document.body.clientHeight,
-    document.documentElement.clientHeight
-  );
-
-  // Check if the user is near the bottom (within 10 pixels)
-  return documentHeight - (scrollY + windowHeight) < 10;
-}
-
-// Function to navigate to the specified page with a delay
-function navigateToPageWithDelay(pageTransition) {
-  // Add the class "is-trans" to the HTML element
-  document.documentElement.classList.add("is-trans");
-
-  // Add a timeout of 300 milliseconds (0.3 seconds)
-  setTimeout(() => {
-    // Navigate to the specified page after the delay
-    window.location.href = pageTransition;
-  }, 300);
-}
-
-// Event listener for scroll events
-window.addEventListener('scroll', function () {
-  // Check if the user has scrolled to the bottom
-  if (isAtBottom()) {
-    // Get the value of "data-page-transition" attribute
-    const pageTransition = footerScrollWrapper.getAttribute('data-page-transition');
-
-    // Navigate to the specified page with a delay
-    navigateToPageWithDelay(pageTransition);
-  }
-});
 
 
 
