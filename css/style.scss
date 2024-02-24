@@ -2981,14 +2981,15 @@ main {
 footer {
     .footer-scroll-wrapper {
         position: relative;
-        height: 200vh;
+        height: 100vh;
 
         .footer-scroll-ct {
-            height: 100vh;
+            height: 100%;
             width: 100%;
             background-color: $dark;
-            position: sticky;
-            top: 0;
+            position: relative;
+            // position: sticky;
+            // top: 0;
 
             .bg-ct {
                 position: absolute;
@@ -2996,7 +2997,6 @@ footer {
                 left: 0;
                 width: 100%;
                 height: 100%;
-                z-index: -1;
                 overflow: hidden;
 
                 .bg {
@@ -3129,17 +3129,51 @@ footer {
         }
 
         .row {
-            position: static;
+            width: 100%;
             height: 100%;
-
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            &:first-of-type {
+                z-index: 2;
+            }
+            &:last-of-type {
+                height: fit-content;
+                position: absolute;
+                bottom: 7.22rem;
+                top: auto;
+                @media (min-width: $large) {
+                    bottom: 1.77rem;
+                    font-size: $large-font-size;
+                }
+            }
             .col {
+                width: 100%;
                 height: 100%;
             }
         }
 
         .next-page-name-ct {
             display: block;
+            width: fit-content;
+            &:hover {
+                .line {
+                    width: 115%;
+                    left: -12.5%;
+                    right: auto;
+                    @media (min-width: $large) {
+                        width: 125%;
 
+                    }
+                }
+                .keep-scrolling {
+                    letter-spacing: .3em;
+                    color: $light;
+                }
+               
+            } 
             >span {
                 display: block;
             }
@@ -3157,9 +3191,9 @@ footer {
             font-size: 21.94rem;
             text-transform: uppercase;
             text-align: center;
-            width: 100%;
+            width: max-content;
             font-weight: 300;
-            @extend %animated-transform;
+            @extend %animated-transform-two;
             letter-spacing: 0;
 
             @media (min-width: $medium) {
@@ -3168,6 +3202,19 @@ footer {
 
             @media (min-width: $large) {
                 font-size: 15.73rem;
+            }
+          
+            .line {
+                position: absolute;
+                top: 50%;
+                left: auto;
+                right: -12.5%;;
+                height: 1px;
+                transform: translateY(-50%);
+                background-color: $light;
+                z-index: 4;
+                width: 0;
+                @extend %animated-transform-two;
             }
         }
 
@@ -3181,7 +3228,7 @@ footer {
             text-align: center;
             letter-spacing: .15em;
             width: 100%;
-
+            @extend %animated-transform-two;
             @media (min-width: $medium) {
                 top: calc(50% - 10rem);
             }
@@ -3193,8 +3240,7 @@ footer {
         }
 
         .bottom-footer-ct {
-            position: absolute;
-            bottom: 7.22rem;
+           
             display: flex;
             flex-flow: column-reverse;
             text-align: center;
@@ -3205,17 +3251,18 @@ footer {
             @media (min-width: $medium) {
                 flex-flow: row;
                 justify-content: space-between;
-                padding: 0 $medium-base-gap;
+                // padding: 0 $medium-base-gap;
                 text-align: left;
                 font-size: clamp(12px, 1.88rem, 14px);
             }
 
             @media (min-width: $large) {
-                bottom: 1.77rem;
+                // bottom: 1.77rem;
                 font-size: $large-font-size;
             }
 
             p {
+                margin-bottom: 0;
                 a {
                     position: relative;
 
