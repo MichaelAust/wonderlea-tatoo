@@ -1071,7 +1071,7 @@ $branding-width-medium: 60px;
             @extend %animated-transform-two;
         }
 
-        html.fixed & {
+        html.fixed &, body.startseite & {
             &:before {
                 height: 100%;
             }
@@ -1344,7 +1344,7 @@ $branding-width-medium: 60px;
                             position: absolute;
                             inset: 0;
                             margin: auto;
-                            width: 30.16rem;
+                            width: 26rem;
                             display: flex;
                             justify-content: space-between;
                             align-items: center;
@@ -1824,10 +1824,10 @@ header:not(.sub-page-header) {
                 &:before {
                     content: '';
                     position: absolute;
-                    top: 0;
+                    bottom: 0%;
                     left: 0;
                     width: 100%;
-                    height: 100%;
+                    height: 50%;
                     background: linear-gradient(0deg, rgba($dark, .8) 0%, rgba($dark, 0) 100%);
                     z-index: 2;
 
@@ -1859,7 +1859,11 @@ header:not(.sub-page-header) {
 
                     img {
                         object-fit: cover;
-                        object-position: top;
+                        object-position: center;
+                        @media (min-width: $large) {
+                            object-position: top;
+
+                        }
                     }
                 }
             }
@@ -1890,7 +1894,7 @@ header:not(.sub-page-header) {
                     font-family: $display-font;
                     text-transform: uppercase;
                     text-align: center;
-                    font-size: 22.94rem;
+                    font-size: 21.94rem;
                     line-height: 1;
                     color: $light;
                     font-weight: 300;
@@ -1918,7 +1922,11 @@ header:not(.sub-page-header) {
                     .mr {
                         margin-right: .12em;
                     }
+                    .o.first {
+                        margin-right: -.04em;
+                        margin-left: -.06em;
 
+                    }
                     .t {
                         margin-right: -.055em;
 
@@ -3785,7 +3793,7 @@ body:not(.start):not(.ueber) main {
                     }
                 }
 
-                &.personalisiert {
+                &.traditional {
                     span {
                         .inner {
                             &:before {
@@ -4431,11 +4439,11 @@ body.datenschutzerklaerung {
 
 }
 
-.masonry-layout>div>img,
+.masonry-layout>div>img, .masonry-layout>div>picture,
 .masonry-layout>div>div {
     width: 100%;
     margin-bottom: $base-gap;
-
+    display: block;
     @media (min-width: $medium) {
         margin-bottom: $medium-base-gap;
 

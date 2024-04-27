@@ -829,7 +829,7 @@ html.open-navi .quickbar {
   background: linear-gradient(180deg, rgba(29, 29, 29, 0.7) 0%, rgba(29, 29, 29, 0) 100%);
   z-index: -1;
 }
-html.fixed .quickbar .quickbar-inner:before {
+html.fixed .quickbar .quickbar-inner:before, body.startseite .quickbar .quickbar-inner:before {
   height: 100%;
 }
 html.open-navi .quickbar .quickbar-inner:before {
@@ -1051,7 +1051,7 @@ html.open-navi #navigation {
     position: absolute;
     inset: 0;
     margin: auto;
-    width: 30.16rem;
+    width: 26rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -1507,10 +1507,10 @@ header:not(.sub-page-header) .header-images-ct .elli-wrapper .elli {
 header:not(.sub-page-header) .header-images-ct .elli-wrapper .elli:before {
   content: "";
   position: absolute;
-  top: 0;
+  bottom: 0%;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 50%;
   background: linear-gradient(0deg, rgba(29, 29, 29, 0.8) 0%, rgba(29, 29, 29, 0) 100%);
   z-index: 2;
 }
@@ -1542,8 +1542,14 @@ header:not(.sub-page-header) .header-images-ct .elli-wrapper .elli picture {
 header:not(.sub-page-header) .header-images-ct .elli-wrapper .elli picture img {
   -o-object-fit: cover;
      object-fit: cover;
-  -o-object-position: top;
-     object-position: top;
+  -o-object-position: center;
+     object-position: center;
+}
+@media (min-width: 1199px) {
+  header:not(.sub-page-header) .header-images-ct .elli-wrapper .elli picture img {
+    -o-object-position: top;
+       object-position: top;
+  }
 }
 header:not(.sub-page-header) .header-images-ct .elli-wrapper .text-ct {
   position: absolute;
@@ -1573,7 +1579,7 @@ header:not(.sub-page-header) .header-images-ct .elli-wrapper .text-ct h1 {
   font-family: freightbigcmp-pro, serif;
   text-transform: uppercase;
   text-align: center;
-  font-size: 22.94rem;
+  font-size: 21.94rem;
   line-height: 1;
   color: #E8E8E8;
   font-weight: 300;
@@ -1598,6 +1604,10 @@ header:not(.sub-page-header) .header-images-ct .elli-wrapper .text-ct h1 .w {
 }
 header:not(.sub-page-header) .header-images-ct .elli-wrapper .text-ct h1 .mr {
   margin-right: 0.12em;
+}
+header:not(.sub-page-header) .header-images-ct .elli-wrapper .text-ct h1 .o.first {
+  margin-right: -0.04em;
+  margin-left: -0.06em;
 }
 header:not(.sub-page-header) .header-images-ct .elli-wrapper .text-ct h1 .t {
   margin-right: -0.055em;
@@ -3242,15 +3252,15 @@ html.open-filter .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner
     transform: translate(-50%, 0%) rotate(-65.6deg) scaleY(1);
   }
 }
-.sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.personalisiert span .inner:before {
+.sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.traditional span .inner:before {
   background-image: url(../images/layout/personalisiert-icon.svg);
 }
 @media (min-width: 1199px) {
-  .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.personalisiert .line {
+  .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.traditional .line {
     height: 40.2rem;
     transform: translate(-50%, 0%) rotate(-81.4deg) scaleY(0);
   }
-  .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.personalisiert .line.on-screen {
+  .sub-h1-lines-ct .filter-categories-ct .filter-categories-inner .category-ct.traditional .line.on-screen {
     transform: translate(-50%, 0%) rotate(-81.4deg) scaleY(1);
   }
 }
@@ -3796,19 +3806,20 @@ body.datenschutzerklaerung .dse p {
   justify-content: space-between;
 }
 
-.masonry-layout > div > img,
+.masonry-layout > div > img, .masonry-layout > div > picture,
 .masonry-layout > div > div {
   width: 100%;
   margin-bottom: 5rem;
+  display: block;
 }
 @media (min-width: 639px) {
-  .masonry-layout > div > img,
+  .masonry-layout > div > img, .masonry-layout > div > picture,
   .masonry-layout > div > div {
     margin-bottom: 3rem;
   }
 }
 @media (min-width: 1199px) {
-  .masonry-layout > div > img,
+  .masonry-layout > div > img, .masonry-layout > div > picture,
   .masonry-layout > div > div {
     margin-bottom: 1.88rem;
   }
