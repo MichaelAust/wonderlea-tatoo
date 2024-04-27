@@ -168,7 +168,7 @@ if (document.body.classList.contains('start')) {
         scrollTrigger: {
           trigger: ".sec-1 .multi-img-ct",
           start: "top bottom",
-          end: "top top",
+          end: "bottom top",
           scrub: true,
         }
       });
@@ -732,107 +732,156 @@ if (document.body.classList.contains("galerie")) {
   // Initial beim Laden der Seite aufrufen
   handleScreenSize();
 
+// Funktion zum Aktualisieren der Masonry-Struktur
+function updateMasonry(container, items, columns) {
+  var CONTAINER_EL = document.getElementById(container);
+  var ITEMS_ELS = document.querySelectorAll("." + items);
 
-  // Funktion zum Anzeigen von Bildern basierend auf dem data-type
-  var showImagesByType = function (type) {
-    var IMAGES_ELS = document.querySelectorAll('.image');
-    var masonry = document.getElementById('masonry'); // Das Element, das die Masonry-Anordnung enthält
-
-    // Ursprüngliche und neue Höhe merken
-    var originalHeight = masonry.clientHeight;
-    var newHeight;
-
-    // Animation: Masonry ausblenden und Höhe anpassen
-    gsap.to(masonry, {
-      opacity: 0,
-      duration: 0.3,
-      onComplete: function () {
-        // Bilder entsprechend des data-type anzeigen/ausblenden
-        IMAGES_ELS.forEach(function (image) {
-          if (type === 'alle' || image.getAttribute('data-type') === type) {
-            image.style.display = 'block';
-          } else {
-            image.style.display = 'none';
-          }
-        });
-
-        // Die Höhe des masonry-Containers anpassen
-        masonry.style.height = 'auto';
-        newHeight = masonry.clientHeight;
-        gsap.to(masonry, {
-          height: originalHeight,
-          duration: 0
-        }); // Zur alten Höhe animieren
-
-        // Timeout verwenden, um den Übergang der Höhenänderung zu ermöglichen
-        setTimeout(function () {
-          gsap.to(masonry, {
-            opacity: 1,
-            height: newHeight,
-            duration: 0.3,
-            onComplete: function () {
-              // Nach Abschluss der Animation ScrollTrigger aktualisieren
-              ScrollTrigger.refresh();
-            }
-          }); // Zur neuen Höhe animieren
-        }, 0);
-      }
-    });
-  };
-
-  // Event-Listener für Kategorien
-  var categoryList = document.getElementById('category-list');
-  categoryList.addEventListener('click', function (event) {
-    var clickedType = event.target.getAttribute('data-type');
-    if (clickedType) {
-      showImagesByType(clickedType);
+  // Alle Spalten leeren
+  var columnsElements = CONTAINER_EL.querySelectorAll(".masonry-column");
+  columnsElements.forEach((column) => {
+    while (column.firstChild) {
+      column.removeChild(column.firstChild);
     }
   });
 
+  // Bilder gleichmäßig in die Spalten verteilen
+  var countColumn = 1;
+  ITEMS_ELS.forEach((item) => {
+    if (item.style.display !== "none") {
+      var col = CONTAINER_EL.querySelector(
+        ".masonry-column-" + countColumn
+      );
+      col.appendChild(item);
+      countColumn = countColumn < columns ? countColumn + 1 : 1;
+    }
+  });
+}
 
-  // Event-Listener für Kategorien
-  var categoryElements = document.getElementsByClassName('category-ct');
+// Funktion zum Anzeigen von Bildern basierend auf dem data-type
+var showImagesByType = function (type) {
+  var IMAGES_ELS = document.querySelectorAll('.image');
+  var masonry = document.getElementById('masonry');
 
-  for (var i = 0; i < categoryElements.length; i++) {
-    categoryElements[i].addEventListener('click', function (event) {
-      // Alle Elemente mit der Klasse "category-ct" initialisiert
-      for (var j = 0; j < categoryElements.length; j++) {
-        categoryElements[j].classList.remove('active');
-      }
+  // Ursprüngliche und neue Höhe merken
+  var originalHeight = masonry.clientHeight;
+  var newHeight;
 
-      // Das angeklickte Element bekommt die Klasse "active"
-      event.target.classList.add('active');
-
-      var clickedType = event.target.getAttribute('data-type');
-      if (clickedType) {
-        // Überprüfe, ob die Bildschirmbreite kleiner als 1200 Pixel ist
-        if (window.innerWidth < 1200) {
-          // Scrolle nach oben
-          window.scrollTo(0, 0);
+  // Masonry ausblenden
+  gsap.to(masonry, {
+    opacity: 0,
+    duration: 0.3,
+    onComplete: function () {
+      // Bilder entsprechend des Filters anzeigen oder ausblenden
+      IMAGES_ELS.forEach((image) => {
+        if (type === 'alle' || image.getAttribute('data-type') === type) {
+          image.style.display = 'block';
+        } else {
+          image.style.display = 'none';
         }
-      }
-    });
+      });
+
+      // Masonry neu aktualisieren
+      var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+      var columns = screenWidth < 1200 ? 2 : 3;
+
+      updateMasonry('masonry', 'image', columns); // Verteilen der sichtbaren Bilder
+      lazyLoadInstance.update(); // LazyLoad aktualisieren
+
+      // Höhe des Masonry-Containers korrigieren
+      setTimeout(function () {
+        masonry.style.height = 'auto'; // Höhe neu berechnen
+        newHeight = masonry.clientHeight;
+
+        // Masonry einblenden und Höhe anpassen
+        gsap.to(masonry, {
+          opacity: 1,
+          height: newHeight,
+          duration: 0.3,
+          onComplete: function () {
+            ScrollTrigger.refresh(); // ScrollTrigger aktualisieren
+          },
+        });
+      }, 100);
+    },
+  });
+};
+
+// Event-Listener für Filterkategorien
+var categoryList = document.getElementById("category-list");
+categoryList.addEventListener("click", function (event) {
+  var clickedType = event.target.getAttribute("data-type");
+  if (clickedType) {
+    showImagesByType(clickedType);
   }
-  const images = document.querySelectorAll('.lightbox-ct img');
+});
+
+// Event-Listener für Kategorien, um aktives Element hervorzuheben
+var categoryElements = document.getElementsByClassName("category-ct");
+for (var i = 0; i < categoryElements.length; i++) {
+  categoryElements[i].addEventListener("click", function (event) {
+    for (var j = 0; j < categoryElements.length; j++) {
+      categoryElements[j].classList.remove("active");
+    }
+
+    event.target.classList.add("active");
+
+    var clickedType = event.target.getAttribute("data-type");
+    if (clickedType) {
+      if (window.innerWidth < 1200) {
+        window.scrollTo(0, 0); // Nach oben scrollen
+      }
+
+      showImagesByType(clickedType); // Bilder basierend auf Filter anzeigen
+    }
+  });
+}
+
+// Event-Listener für Bildschirmgröße
+function handleScreenSize() {
+  var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+  var columns = screenWidth < 1200 ? 2 : 3;
+
+  fetchMasonry("masonry", "image", columns);
+}
+window.addEventListener("resize", handleScreenSize);
+
+// Initial beim Laden der Seite aufrufen
+handleScreenSize(); // Masonry-Grid erstellen
+
+  
+  const pictures = document.querySelectorAll('.lightbox-ct picture');
   const lightboxContainer = document.createElement('div');
   lightboxContainer.classList.add('lightbox-container');
   document.body.appendChild(lightboxContainer);
-
-  images.forEach(function (image) {
-    image.addEventListener('click', function () {
+  
+  pictures.forEach(function (picture) {
+    picture.addEventListener('click', function () {
       const lightboxContent = document.createElement('div');
       lightboxContent.classList.add('lightbox-content');
-
+  
       const xElement = document.createElement('div');
       xElement.classList.add('x');
       xElement.innerHTML = `
-              <div class="line"></div>
-              <div class="line"></div>
-          `;
-
+        <div class="line"></div>
+        <div class="line"></div>
+      `;
+  
+      // Bestimmen des Bildes basierend auf der Bildschirmbreite
       const lightboxImage = document.createElement('img');
-      lightboxImage.src = image.src;
-
+      
+      // Wenn das `srcset`-Attribut existiert, wählen wir das richtige Bild
+      const source = Array.from(picture.querySelectorAll('source')).find(s => 
+        window.matchMedia(s.media).matches
+      );
+      
+      if (source) {
+        lightboxImage.src = source.getAttribute('data-srcset');
+      } else {
+        const img = picture.querySelector('img');
+        lightboxImage.src = img.getAttribute('data-src');
+      }
+  
       lightboxContent.appendChild(xElement);
       lightboxContent.appendChild(lightboxImage);
       lightboxContainer.innerHTML = '';
@@ -840,10 +889,11 @@ if (document.body.classList.contains("galerie")) {
       lightboxContainer.classList.add('active');
     });
   });
-
+  
   lightboxContainer.addEventListener('click', function () {
     lightboxContainer.classList.remove('active');
   });
+  
 
 }
 
