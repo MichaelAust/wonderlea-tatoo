@@ -726,11 +726,11 @@ if (document.body.classList.contains("galerie")) {
     }
   }
 
-  // Event-Listener hinzufügen, um die Funktion bei Änderungen der Bildschirmgröße aufzurufen
-  window.addEventListener('resize', handleScreenSize);
+  // // Event-Listener hinzufügen, um die Funktion bei Änderungen der Bildschirmgröße aufzurufen
+  // window.addEventListener('resize', handleScreenSize);
 
-  // Initial beim Laden der Seite aufrufen
-  handleScreenSize();
+  // // Initial beim Laden der Seite aufrufen
+  // handleScreenSize();
 
 // Funktion zum Aktualisieren der Masonry-Struktur
 function updateMasonry(container, items, columns) {
@@ -844,7 +844,7 @@ function handleScreenSize() {
 
   fetchMasonry("masonry", "image", columns);
 }
-window.addEventListener("resize", handleScreenSize);
+// window.addEventListener("resize", handleScreenSize);
 
 // Initial beim Laden der Seite aufrufen
 handleScreenSize(); // Masonry-Grid erstellen
