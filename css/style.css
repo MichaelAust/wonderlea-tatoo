@@ -1368,27 +1368,40 @@ header:not(.sub-page-header) {
 }
 header:not(.sub-page-header).ueber {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
+}
+@media (min-width: 1199px) {
+  header:not(.sub-page-header).ueber {
+    min-height: 32rem;
+  }
+}
+header:not(.sub-page-header).ueber .row {
+  position: initial;
 }
 header:not(.sub-page-header).ueber h1 {
   font-family: freightbigcmp-pro, serif;
   text-transform: uppercase;
-  font-size: 25rem;
+  font-size: 20rem;
   line-height: 0.85;
   color: #E8E8E8;
   font-weight: 300;
-  margin-bottom: 19.72rem;
+  position: absolute;
+  top: 25rem;
+  left: 5rem;
 }
 @media (min-width: 639px) {
   header:not(.sub-page-header).ueber h1 {
-    margin-bottom: 10.94rem;
-    font-size: 18.13rem;
+    font-size: 15rem;
+    top: 18rem;
+    left: 3rem;
   }
 }
 @media (min-width: 1199px) {
   header:not(.sub-page-header).ueber h1 {
     font-size: 13.07rem;
-    margin-bottom: 2.08rem;
+    left: 3rem;
+    top: auto;
+    bottom: 0;
   }
 }
 @media (min-width: 1199px) {
@@ -1410,14 +1423,6 @@ header:not(.sub-page-header).ueber h1 > div {
   align-items: flex-start;
   flex-wrap: wrap;
 }
-header:not(.sub-page-header).ueber h1 > div.second-line {
-  margin-left: 16.67rem;
-}
-@media (min-width: 639px) {
-  header:not(.sub-page-header).ueber h1 > div.second-line {
-    margin-left: 10rem;
-  }
-}
 @media (min-width: 1199px) {
   header:not(.sub-page-header).ueber h1 > div.second-line {
     margin-left: 8.49rem;
@@ -1426,48 +1431,74 @@ header:not(.sub-page-header).ueber h1 > div.second-line {
 header:not(.sub-page-header).ueber h1 .letter-ct.next-letter {
   margin-right: 0.15em;
 }
-header:not(.sub-page-header) .ueber-bg {
+header:not(.sub-page-header).ueber .intro-text {
+  position: absolute;
+  bottom: 15rem;
+  right: 5rem;
+  width: calc(100% - 10rem);
+}
+@media (min-width: 639px) {
+  header:not(.sub-page-header).ueber .intro-text {
+    bottom: 7rem;
+  }
+}
+@media (min-width: 1199px) {
+  header:not(.sub-page-header).ueber .intro-text {
+    bottom: auto;
+    top: 35%;
+    right: 13rem;
+  }
+}
+header:not(.sub-page-header).ueber .intro-text p {
+  display: flex;
+  flex-flow: column;
+  width: -moz-fit-content;
+  width: fit-content;
+  margin-right: 0;
+  margin-left: auto;
+}
+header:not(.sub-page-header) .ueber-bg-wrapper {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   z-index: -2;
-  background-image: url(../images/ueber-mich/ueber-header-mob.jpg);
-  background-size: cover;
-  background-position: top;
 }
-@media (min-width: 639px) {
-  header:not(.sub-page-header) .ueber-bg {
-    background-image: url(../images/ueber-mich/ueber-header-tab.jpg);
-  }
+header:not(.sub-page-header) .ueber-bg-wrapper:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 75%;
+  background: linear-gradient(0deg, rgba(29, 29, 29, 0) 0%, #1d1d1d 100%);
+  z-index: 1;
+  opacity: 0.9;
+  mix-blend-mode: multiply;
 }
-@media (min-width: 1199px) {
-  header:not(.sub-page-header) .ueber-bg {
-    background-image: url(../images/ueber-mich/ueber-header.jpg);
-    background-position: center;
-  }
-}
-header:not(.sub-page-header) .ueber-bg:before {
+header:not(.sub-page-header) .ueber-bg-wrapper:after {
   content: "";
   position: absolute;
   bottom: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: 50%;
   background: linear-gradient(180deg, rgba(29, 29, 29, 0) 0%, #1d1d1d 100%);
   z-index: 1;
+  opacity: 0.9;
   mix-blend-mode: multiply;
 }
-@media (min-width: 639px) {
-  header:not(.sub-page-header) .ueber-bg:before {
-    opacity: 0.65;
-  }
-}
-@media (min-width: 1199px) {
-  header:not(.sub-page-header) .ueber-bg:before {
-    height: 75%;
-  }
+header:not(.sub-page-header) .ueber-bg-wrapper video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  -o-object-position: center;
+     object-position: center;
 }
 header:not(.sub-page-header) .header-images-ct,
 header:not(.sub-page-header) .elli-wrapper,
